@@ -1,0 +1,19 @@
+{
+  "name": "@topshelf/flavor-graph",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./data": "./src/data/index.ts"
+  },
+  "files": ["src"],
+  "scripts": {
+    "lint": "echo 'no lint'",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-vm-modules --test src/**/*.test.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

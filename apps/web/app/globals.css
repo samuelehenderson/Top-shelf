@@ -1,0 +1,60 @@
+@import "@topshelf/design/tokens.css";
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in oklab, var(--bitters) 12%, transparent), transparent 60%),
+      var(--onyx);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--bitters) 40%, transparent);
+    color: var(--cream);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .hairline {
+    border-color: var(--hairline);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grain {
+    position: relative;
+  }
+
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+  }
+}

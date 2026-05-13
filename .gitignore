@@ -1,0 +1,52 @@
+# deps
+node_modules
+.pnpm-store
+.turbo
+
+# python
+__pycache__
+*.pyc
+.venv
+.uv-cache
+.mypy_cache
+.ruff_cache
+.pytest_cache
+
+# builds
+dist
+build
+.next
+out
+*.tsbuildinfo
+
+# env
+.env
+.env.local
+.env.*.local
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# os
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode
+.idea
+*.swp
+
+# infra
+infra/data/
+*.sqlite
+*.sqlite3
+
+# coverage
+coverage
+.nyc_output
+htmlcov
+
+# generated
+packages/shared/generated/

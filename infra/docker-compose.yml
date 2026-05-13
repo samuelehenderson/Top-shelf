@@ -1,0 +1,53 @@
+name: topshelf
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: topshelf-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: topshelf
+      POSTGRES_PASSWORD: topshelf
+      POSTGRES_DB: topshelf
+    ports:
+      - "5432:5432"
+    volumes:
+      - topshelf_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U topshelf -d topshelf"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: topshelf-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - topshelf_redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  minio:
+    image: minio/minio:latest
+    container_name: topshelf-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: topshelf
+      MINIO_ROOT_PASSWORD: topshelf-secret
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - topshelf_minio:/data
+
+volumes:
+  topshelf_pg:
+  topshelf_redis:
+  topshelf_minio:
